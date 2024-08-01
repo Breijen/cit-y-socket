@@ -1,0 +1,17 @@
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.csproj.AssemblyReference.cache
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.AssemblyInfoInputs.cache
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.AssemblyInfo.cs
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.csproj.CoreCompileInputs.cache
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\cit-y-socket.exe
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\cit-y-socket.deps.json
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\cit-y-socket.runtimeconfig.json
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\cit-y-socket.dll
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\cit-y-socket.pdb
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\websocket-sharp.dll
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-so.B57AB8A5.Up2Date
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.dll
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\refint\cit-y-socket.dll
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.pdb
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.genruntimeconfig.cache
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\ref\cit-y-socket.dll
