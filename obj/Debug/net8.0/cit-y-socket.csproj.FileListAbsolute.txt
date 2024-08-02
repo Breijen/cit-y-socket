@@ -15,3 +15,5 @@ C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\refint\cit-y-socke
 C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.pdb
 C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.genruntimeconfig.cache
 C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\ref\cit-y-socket.dll
+C:\Users\bryan\Documents\GitHub\cit-y-socket\obj\Debug\net8.0\cit-y-socket.sourcelink.json
+C:\Users\bryan\Documents\GitHub\cit-y-socket\bin\Debug\net8.0\Newtonsoft.Json.dll
