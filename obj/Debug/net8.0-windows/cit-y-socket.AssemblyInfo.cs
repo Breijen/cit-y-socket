@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cit-y-socket")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e6f5ac94264f04af81f68a27bdc326d6ab55648")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af8cae82724891957595717dae47366745c61bbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("cit-y-socket")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cit-y-socket")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

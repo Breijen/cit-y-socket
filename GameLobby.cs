@@ -42,7 +42,8 @@ namespace cit_y_socket
                         {
                             int buildingId = (int)message["building_id"];
                             int userId = (int)message["user_id"];
-                            SendBuildingData(buildingId, userId);
+                            string response = BuildingManager.SendBuildingData(buildingId, userId);
+                            Send(response);
                         }
                         else
                         {
@@ -55,7 +56,16 @@ namespace cit_y_socket
                         {
                             int buildingId = (int)message["building_id"];
                             int userId = (int)message["user_id"];
-                            CreateApartment(buildingId, userId);
+                            string response = BuildingManager.CreateApartment(buildingId, userId);
+                            Send(response);
+                        }
+                        break;
+                    case "getApartmentData":
+                        if (message["user_id"] != null)
+                        {
+                            int userId = (int)message["user_id"];
+                            string response = BuildingManager.GetUserApartmentData(userId);
+                            Send(response);
                         }
                         break;
                     default:
@@ -80,109 +90,6 @@ namespace cit_y_socket
         protected override void OnError(WebSocketSharp.ErrorEventArgs e)
         {
             Console.Error.WriteLine(e);
-        }
-
-        private string GetBuildingDataById(int buildingId, int userId)
-        {
-            using (var connection = DatabaseManager.GetConnection())
-            {
-                // Query to get building details
-                string buildingQuery = "SELECT id, building_name, max_occupants FROM buildings WHERE id = @id";
-                using (var command = new MySqlCommand(buildingQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@id", buildingId);
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            var building = new JObject
-                            {
-                                ["id"] = reader.GetInt32("id"),
-                                ["building_name"] = reader.GetString("building_name"),
-                                ["max_occupants"] = reader.GetInt32("max_occupants")
-                            };
-
-                            reader.Close(); // Close the reader before executing another command
-
-                            // Query to count apartments for this building
-                            string apartmentQuery = "SELECT COUNT(*) FROM apartments WHERE building_id = @buildingId";
-                            using (var apartmentCommand = new MySqlCommand(apartmentQuery, connection))
-                            {
-                                apartmentCommand.Parameters.AddWithValue("@buildingId", buildingId);
-                                int apartmentCount = Convert.ToInt32(apartmentCommand.ExecuteScalar());
-                                building["current_occupants"] = apartmentCount; // Add apartment count to the JSON object
-                            }
-
-                            // Query to find the first apartment with the specified user_id
-                            string userApartmentQuery = "SELECT id, building_id FROM apartments WHERE user_id = @userId LIMIT 1";
-                            using (var userApartmentCommand = new MySqlCommand(userApartmentQuery, connection))
-                            {
-                                userApartmentCommand.Parameters.AddWithValue("@userId", userId);
-                                using (var apartmentReader = userApartmentCommand.ExecuteReader())
-                                {
-                                    if (apartmentReader.Read())
-                                    {
-                                        building["user_apartment_id"] = apartmentReader.GetInt32("id"); // Add user's apartment ID to the JSON object
-                                        building["user_building_id"] = apartmentReader.GetInt32("building_id"); // Add user's building ID to the JSON object
-                                    }
-                                    else
-                                    {
-                                        building["user_apartment_id"] = null; // No apartment found for the user
-                                        building["user_building_id"] = null; // No building found for the user's apartment
-                                    }
-                                }
-                            }
-
-                            return building.ToString();
-                        }
-                    }
-                }
-            }
-            return "{}"; // Return an empty JSON object if no building is found
-        }
-
-        private void SendBuildingData(int buildingId, int userId)
-        {
-            string buildingData = GetBuildingDataById(buildingId, userId);
-
-            var response = new JObject
-            {
-                ["type"] = "building_data",
-                ["data"] = JObject.Parse(buildingData)
-            };
-            Send(response.ToString());
-        }
-
-        private string CreateApartment(int buildingId, int userId)
-        {
-            using (var connection = DatabaseManager.GetConnection())
-            {
-                string insertQuery = "INSERT INTO apartments (building_id, user_id, apartment_type) VALUES (@buildingId, @userId, @apartmentType)";
-                using (var command = new MySqlCommand(insertQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@buildingId", buildingId);
-                    command.Parameters.AddWithValue("@userId", userId);
-                    command.Parameters.AddWithValue("@apartmentType", "box");
-
-                    try
-                    {
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            return new JObject { ["type"] = "createApartment", ["status"] = "success" }.ToString();
-                        }
-                        else
-                        {
-                            return new JObject { ["type"] = "createApartment", ["status"] = "failure", ["error"] = "No rows affected." }.ToString();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error creating apartment: " + ex.Message);
-                        return new JObject { ["type"] = "createApartment", ["status"] = "failure", ["error"] = ex.Message }.ToString();
-                    }
-                }
-            }
         }
 
         // Methods to validate token and authenticate user
